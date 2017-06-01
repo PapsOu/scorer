@@ -1,0 +1,36 @@
+@import "theme";
+
+.players-list {
+    border: none;
+    overflow: visible;
+
+    .player {
+        margin: 1em 0.5em;
+        border: 4px dotted white;
+
+        .player-icon {
+            margin: 0;
+            display: block;
+            width: 4rem;
+            height: 4rem;
+            color: white;
+            line-height: 4rem;
+            text-align: center;
+            font-weight: bold;
+            font-style: normal;
+            padding: 0;
+            font-size: 2em;
+        }
+
+        .player-name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    }
+
+    .player-moving {
+        border: 4px dotted darken($body-bg,10%);
+        margin: 1em 0.5em;
+        padding: 10px;
+    }
+}

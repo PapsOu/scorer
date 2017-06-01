@@ -1,0 +1,333 @@
+@charset "UTF-8";
+// MaterializeCSS  Variable overrides
+$small-screen-up: 801px !default;
+$small-screen: 800px !default;
+// Mixins
+@import "../liftJs/sass/materializecss/components/mixins";
+@import "color";
+// Variables;
+@import "../liftJs/sass/materializecss/components/variables";
+// Reset
+@import "../liftJs/sass/materializecss/components/normalize";
+// components
+@import "../liftJs/sass/materializecss/components/global";
+@import "../liftJs/sass/materializecss/components/badges";
+@import "../liftJs/sass/materializecss/components/icons-material-design";
+@import "../liftJs/sass/materializecss/components/grid";
+@import "../liftJs/sass/materializecss/components/navbar";
+@import "../liftJs/sass/materializecss/components/roboto";
+@import "../liftJs/sass/materializecss/components/typography";
+@import "../liftJs/sass/materializecss/components/transitions";
+@import "../liftJs/sass/materializecss/components/cards";
+@import "../liftJs/sass/materializecss/components/toast";
+@import "../liftJs/sass/materializecss/components/tabs";
+@import "../liftJs/sass/materializecss/components/tooltip";
+@import "../liftJs/sass/materializecss/components/buttons";
+@import "../liftJs/sass/materializecss/components/dropdown";
+@import "../liftJs/sass/materializecss/components/waves";
+@import "../liftJs/sass/materializecss/components/modal";
+@import "../liftJs/sass/materializecss/components/collapsible";
+@import "../liftJs/sass/materializecss/components/chips";
+@import "../liftJs/sass/materializecss/components/materialbox";
+@import "../liftJs/sass/materializecss/components/forms/forms";
+@import "../liftJs/sass/materializecss/components/table_of_contents";
+@import "../liftJs/sass/materializecss/components/sideNav";
+@import "../liftJs/sass/materializecss/components/preloader";
+@import "../liftJs/sass/materializecss/components/slider";
+@import "../liftJs/sass/materializecss/components/carousel";
+@import "../liftJs/sass/materializecss/components/tapTarget";
+@import "../liftJs/sass/materializecss/components/pulse";
+@import "../liftJs/sass/materializecss/components/date_picker/default";
+@import "../liftJs/sass/materializecss/components/date_picker/default.date";
+@import "../liftJs/sass/materializecss/components/date_picker/default.time";
+// Custom Theme colors
+$primary-color: color('blue-grey','base');
+$accent-color: color('amber', 'lighten-2');
+$success-color: color('green', 'lighten-1');
+$danger-color: color('red', 'lighten-2');
+$info-color: color('blue', 'lighten-2');
+$default-color: color('blue-grey', 'base');
+$body-bg: color('blue-grey','lighten-5');
+$neutral-color: color('grey','base');
+// Main colors classes
+$mainColors: ( "primary": $primary-color, "accent": $accent-color, "success": $success-color, "danger": $danger-color, "info": $info-color, );
+@each $color, $color_value in $mainColors {
+    .#{$color} {
+        background-color: $color_value;
+
+        &.btn:hover {
+            background-color: lighten($color_value,10%);
+        }
+    }
+
+    .#{$color}-text {
+        color: $color_value;
+    }
+}
+// Material icons
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url('../fonts/MaterialIcons-Regular.woff2') format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+}
+// APP
+body,
+html {
+    min-height: 100%;
+    background: $body-bg;
+    color: $primary-color;
+
+    #app {
+        nav {
+            background-color: $primary-color;
+            position: fixed;
+            z-index: 998;
+            height: 4.1em;
+
+            .nav-wrapper {
+                z-index: 998;
+
+                & > #nav-mobile-left > li > a,
+                & > #nav-mobile-right > li > a {
+                    height: 4.15em;
+                    @media #{$medium-and-up} {
+                        & > i.material-icons {
+                            display: inline-block;
+                        }
+                    }
+                }
+                @media #{$medium-and-up} {
+                    & > #nav-mobile-right > li > a > span {
+                        margin-right: 0.5em;
+                        margin-bottom: 0.5em;
+                        position: relative;
+                        top: -0.4em;
+                    }
+                }
+            }
+
+            .brand-logo {
+                padding-left: 0.5em;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                @media #{$small-and-down} {
+                    font-size: 3.5vw;
+                }
+            }
+
+            li {
+                a {
+                    &:active,
+                    &:hover {
+                        background-color: darken($primary-color,5%);
+                    }
+                }
+            }
+        }
+
+        .content {
+            padding: 4.6em 1em 1em;
+        }
+    }
+
+    .dropdown-content {
+        li {
+            min-width: 200px;
+
+            & > a {
+                color: $primary-color;
+
+                &:active,
+                &:hover {
+                    background-color: $primary-color;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    #toast-container {
+        top: 0;
+        left: 25%;
+        right: 25%;
+        top: 3em;
+        height: 0;
+        padding-top: 0;
+        @media #{$small-and-down} {
+            left: 1em;
+            right: 1em;
+            min-width: initial;
+            height: 0;
+            padding-top: 0;
+            top: 3em;
+        }
+
+        .toast {
+            margin: 0.5em auto;
+            float: none;
+            text-align: center;
+            font-weight: bold;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+
+            &.info {
+                background-color: white;
+                color: $info-color;
+                border-bottom-color: $info-color;
+            }
+
+            &.warning {
+                background-color: white;
+                color: $accent-color;
+                border-bottom-color: $accent-color;
+            }
+
+            &.error {
+                background-color: white;
+                color: $danger-color;
+                border-bottom-color: $danger-color;
+            }
+
+            &.success {
+                background-color: white;
+                color: $success-color;
+                border-bottom-color: $success-color;
+            }
+
+            &.default {
+                background-color: white;
+                color: $default-color;
+                border-bottom-color: $default-color;
+            }
+        }
+    }
+
+    :focus {
+        outline: none;
+    }
+
+    ::-moz-focus-inner {
+        border: 0;
+    }
+
+    ::selection {
+        background: $accent-color;
+        /* WebKit/Blink Browsers */
+    }
+
+    ::-moz-selection {
+        background: $accent-color;
+        /* Gecko Browsers */
+    }
+
+    .btn-fullwidth {
+        width: 100%;
+    }
+
+    .btn-floating:focus,
+    .btn-large:focus,
+    .btn:focus {
+        &.primary {
+            background-color: lighten($primary-color,15%);
+        }
+
+        &.accent {
+            background-color: lighten($accent-color,15%);
+        }
+
+        &.success {
+            background-color: lighten($success-color,15%);
+        }
+
+        &.danger {
+            background-color: lighten($danger-color,15%);
+        }
+
+        &.info {
+            background-color: lighten($info-color,15%);
+        }
+
+        &.default {
+            background-color: lighten($default-color,15%);
+        }
+    }
+    /* label color */
+    .input-field label {
+        color: $primary-color;
+    }
+    /* label focus color */
+    .input-field input[type=text]:focus + label {
+        color: $primary-color;
+    }
+    /* label underline focus color */
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid $primary-color;
+        box-shadow: 0 1px 0 0 $primary-color;
+    }
+    /* valid color */
+    .input-field input[type=text].valid {
+        border-bottom: 1px solid $success-color;
+        box-shadow: 0 1px 0 0 $success-color;
+    }
+    /* invalid color */
+    .input-field input[type=text].invalid {
+        border-bottom: 1px solid $danger-color;
+        box-shadow: 0 1px 0 0 $danger-color;
+    }
+    /* icon prefix focus color */
+    .input-field .prefix.active {
+        color: $primary-color;
+    }
+
+    #contentLoader {
+        display: none;
+        width: 150px;
+        height: 150px;
+        margin: 25% auto 0;
+
+        .preloader-wrapper {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    [type="checkbox"]:checked + label::before {
+        border-right: 2px solid $success-color;
+        border-bottom: 2px solid $success-color;
+    }
+
+    .tap-target {
+        background-color: $info-color;
+        color: white;
+    }
+
+    .fixed-action-btn {
+        z-index: 9999;
+    }
+    @media #{$small-and-down} {
+        form {
+            .btn {
+                width: 100%;
+                margin: 1em 0;
+            }
+        }
+    }
+}

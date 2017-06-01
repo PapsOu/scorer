@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" type="text/css" href="sass/styles.css">
+        <title></title>
+
+        <meta name="theme-color" content="#455a64">
+    </head>
+    <body>
+        <div id="app">
+
+            <!-- NAVBAR -->
+
+            <handlebar-placeholder template="navbar"></handlebar-placeholder>
+
+            <div class="content">
+
+                <!-- IMPORTANT : ALL handlebar-placeholder WILL BE CLEARED WHEN USING app.core.ctrl.go and app.core.ctrl.render(x,y,true) -->
+
+                <!-- CONTENT VIEWS -->
+
+                <handlebar-placeholder template="home"></handlebar-placeholder>
+                <handlebar-placeholder template="settings"></handlebar-placeholder>
+                <handlebar-placeholder template="formPlayer"></handlebar-placeholder>
+
+                <!-- CONTENT LOADER -->
+
+                <div id="contentLoader">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FEATURE DISCOVERY INFOS -->
+
+            <handlebar-placeholder template="infos"></handlebar-placeholder>
+
+            <!-- MODAL -->
+
+        </div>
+
+        <!-- LIBS -->
+
+        <script src="liftJs/js/libs/jquery-3.2.1.min.js"></script>
+        <script src="liftJs/js/libs/jquery-ui.min.js"></script>
+        <script src="liftJs/js/libs/jquery.ui.touch-punch.min.js"></script>
+        <script src="liftJs/js/libs/handlebars-v4.0.5.js"></script>
+        <script src="liftJs/js/libs/materialize.min.js"></script>
+        <script src="liftJs/js/libs/moment-with-locales.min.js"></script>
+
+        <!-- APP -->
+
+        <script type="text/javascript" src="liftJs/js/app.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/utils.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/ui.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/controller.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/events.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/session.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/history.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/modal.js"></script>
+        <script type="text/javascript" src="liftJs/js/core/settings.js"></script>
+
+        <!-- BUSINESS COMPONENTS -->
+
+        <script type="text/javascript" src="liftJs/js/modules/featureDiscovery.js"></script>
+        <script type="text/javascript" src="js/modules/players.js"></script>
+
+        <!-- APP STARTER -->
+
+        <script type="text/javascript">
+            app.config.host = "http://192.168.0.105";
+
+            app.config.parametersPath = "/parameters.json";
+            // START APP
+            $(document).ready(function () {
+                app.init();
+            });
+        </script>
+
+        <!-- TEMPLATES LOADED VIA AJAX -->
+
+        <script id="navbar-template" type="text/x-handlebars-template" src="views/blocks/navbar.html"></script>
+        <script id="modal-template" type="text/x-handlebars-template" src="liftJs/views/blocks/modal.html"></script>
+        <script id="home-template" type="text/x-handlebars-template" src="views/home.html"></script>
+        <script id="settings-template" type="text/x-handlebars-template" src="liftJs/views/pages/settings.html"></script>
+        <script id="infos-template" type="text/x-handlebars-template" src="liftJs/views/blocks/infos.html"></script>
+
+        <script id="formPlayer-template" type="text/x-handlebars-template" src="views/forms/player.html"></script>
+
+    </body>
+</html>

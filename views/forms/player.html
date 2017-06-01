@@ -1,0 +1,22 @@
+<div class="row">
+    <form class="col s12" data-ctrl="addPlayer" id="test">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Nom" id="name" name="name" type="text" class="validate" value="{{player.name}}">
+                <label for="name">Nom</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="score" type="number" name="score" class="validate" value="{{player.score}}">
+                <label for="score">Score</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Ajouter
+                    <i class="material-icons right">done</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

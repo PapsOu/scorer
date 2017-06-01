@@ -1,0 +1,25 @@
+<ul class="collection players-list">
+
+    {{#each players as |player|}}
+        <li class="collection-item valign-wrapper row player z-depth-1">
+            <p class="col s1 player-icon circle red">
+                {{{substrUcfirst player.name 0 2}}}
+            </p>
+
+            <p class="col s10 player-name">
+                <span class="name">
+                    {{player.name}}
+                </span>
+                <span class="score">
+                    {{player.score}}
+                </span>
+            </p>
+            <p class="right-align col s1 player-order">
+                <a href="javascript:;">
+                    <i class="material-icons primary-text">apps</i>
+                </a>
+            </p>
+        </li>
+
+    {{/each}}
+</ul>

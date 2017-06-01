@@ -1,0 +1,41 @@
+<nav>
+    <div class="nav-wrapper primary">
+        <a href="/" class="brand-logo"></a>
+        <ul id="nav-mobile-left" class="left">
+            <li>
+                <a href='javascript:;' data-go="homeAction">
+                    <i class="material-icons left">home</i>
+                    <span class="button-label hide-on-med-and-down">Joueurs</span>
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-mobile-right" class="right">
+            <li>
+                <a class='dropdown-button' href="javascript:;"
+                   data-activates='rightMenu'
+                   data-alignment="right"
+                   data-constrainWidth="false"
+                   data-belowOrigin="true"
+                   >
+                    <span class="button-label hide-on-med-and-down">Actions</span>
+                    <i class="material-icons" id='rightMenuInfo'>menu</i>
+                </a>
+
+                <ul id='rightMenu' class='dropdown-content'>
+                    <li>
+                        <a href="javascript:;" data-go="showFormPlayer">
+                            <i class="material-icons">plus_one</i>
+                            Nouveau joueur
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-go="showSettings">
+                            <i class="material-icons">settings</i>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
