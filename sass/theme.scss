@@ -137,7 +137,7 @@ html {
                 a {
                     &:active,
                     &:hover {
-                        background-color: darken($primary-color,5%);
+                        background-color: $primary-color;
                     }
                 }
             }
@@ -330,4 +330,27 @@ html {
             }
         }
     }
+}
+
+// Z-levels
+.z-depth-0-text {
+  text-shadow: none !important;
+}
+.z-depth-1-text {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.14), 0 1px 5px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.2);
+}
+.z-depth-1-half-text {
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.14), 0 1px 7px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.2);
+}
+.z-depth-2-text {
+  text-shadow: 0 4px 5px rgba(0, 0, 0, 0.14), 0 1px 10px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.z-depth-3-text {
+  text-shadow: 0 6px 10px rgba(0, 0, 0, 0.14), 0 1px 18px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+.z-depth-4-text {
+  text-shadow: 0 8px 10px rgba(0, 0, 0, 0.14), 0 3px 14px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.z-depth-5-text {
+  text-shadow: 0 16px 24px rgba(0, 0, 0, 0.14), 0 6px 30px rgba(0, 0, 0, 0.12), 0 8px 10px rgba(0, 0, 0, 0.3);
 }

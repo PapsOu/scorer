@@ -1,3 +1,5 @@
-liftJs/*
+liftJs
 node_modules/*
 parameters.json
+sass/*.css
+sass/*.css.map

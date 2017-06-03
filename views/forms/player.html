@@ -1,5 +1,6 @@
 <div class="row">
-    <form class="col s12" data-ctrl="addPlayer" id="test">
+    <form class="col s12 player-form" data-ctrl="addOrEditPlayer">
+        <input id="id" type="hidden" name="id" value="{{player.id}}"/>
         <div class="row">
             <div class="input-field col s6">
                 <input placeholder="Nom" id="name" name="name" type="text" class="validate" value="{{player.name}}">
@@ -12,9 +13,42 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
+                <div class="colorBoxContainer">
+                    <div class="{{#ifCond player.color '==' 'materialize-red'}}selected{{/ifCond}} colorBox materialize-red"></div>
+                    <div class="{{#ifCond player.color '==' 'red'}}selected{{/ifCond}} colorBox red"></div>
+                    <div class="{{#ifCond player.color '==' 'pink'}}selected{{/ifCond}} colorBox pink"></div>
+                    <div class="{{#ifCond player.color '==' 'purple'}}selected{{/ifCond}} colorBox purple"></div>
+                    <div class="{{#ifCond player.color '==' 'deep-purple'}}selected{{/ifCond}} colorBox deep-purple"></div>
+                    <div class="{{#ifCond player.color '==' 'indigo'}}selected{{/ifCond}} colorBox indigo"></div>
+                    <div class="{{#ifCond player.color '==' 'blue'}}selected{{/ifCond}} colorBox blue"></div>
+                    <div class="{{#ifCond player.color '==' 'light-blue'}}selected{{/ifCond}} colorBox light-blue"></div>
+                    <div class="{{#ifCond player.color '==' 'cyan'}}selected{{/ifCond}} colorBox cyan"></div>
+                    <div class="{{#ifCond player.color '==' 'teal'}}selected{{/ifCond}} colorBox teal"></div>
+                    <div class="{{#ifCond player.color '==' 'green'}}selected{{/ifCond}} colorBox green"></div>
+                    <div class="{{#ifCond player.color '==' 'light-green'}}selected{{/ifCond}} colorBox light-green"></div>
+                    <div class="{{#ifCond player.color '==' 'lime'}}selected{{/ifCond}} colorBox lime"></div>
+                    <div class="{{#ifCond player.color '==' 'yellow'}}selected{{/ifCond}} colorBox yellow"></div>
+                    <div class="{{#ifCond player.color '==' 'amber'}}selected{{/ifCond}} colorBox amber"></div>
+                    <div class="{{#ifCond player.color '==' 'orange'}}selected{{/ifCond}} colorBox orange"></div>
+                    <div class="{{#ifCond player.color '==' 'deep-orange'}}selected{{/ifCond}} colorBox deep-orange"></div>
+                    <div class="{{#ifCond player.color '==' 'brown'}}selected{{/ifCond}} colorBox brown"></div>
+                    <div class="{{#ifCond player.color '==' 'blue-grey'}}selected{{/ifCond}} colorBox blue-grey"></div>
+                    <div class="{{#ifCond player.color '==' 'grey'}}selected{{/ifCond}} colorBox grey"></div>
+                    <input id="color" type="hidden" name="color" value="{{player.color}}"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="input-field col s12">
                 <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Ajouter
-                    <i class="material-icons right">done</i>
+                    {{#ifCond player.id 'not null' }}
+                        Modifier
+                        <i class="material-icons right">mode_edit</i>
+                    {{else}}
+                        Ajouter
+                        <i class="material-icons right">done</i>
+                    {{/ifCond}}
                 </button>
             </div>
         </div>
