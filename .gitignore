@@ -3,3 +3,7 @@ node_modules/*
 parameters.json
 sass/*.css
 sass/*.css.map
+cordova/hooks
+cordova/node_modules
+cordova/platforms
+cordova/plugins

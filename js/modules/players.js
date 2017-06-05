@@ -5,6 +5,7 @@ app.register({
 
         registerTemplates: function() {
             app.core.ui.addTemplate('content', 'home', '../views/home.html');
+            app.core.ui.addTemplate('app', 'scoreButtons', '../views/blocks/scoreButtons.html');
             app.core.ui.addTemplate('content', 'formPlayer', '../views/forms/player.html');
             app.core.ui.addTemplate('app', 'player-actions', '../views/blocks/player-actions.html');
         },
@@ -32,13 +33,15 @@ app.register({
                     var item = $(this);
                     var player = JSON.parse(item.attr('data-player'));
 
-                    if($(this).hasClass('selected')) {
+                    if ($(this).hasClass('selected')) {
                         $('.players-list .player').removeClass('selected');
                         app.players.currentPlayer = null;
+                        $('.scoreButtons').removeClass('active');
                     } else {
                         $('.players-list .player').removeClass('selected');
                         item.addClass('selected');
                         app.players.currentPlayer = player;
+                        $('.scoreButtons').addClass('active');
                     }
                 })
 
@@ -64,6 +67,47 @@ app.register({
 
                     $('#color').val(cls);
                 })
+
+                .on('click', '.signChanger', function() {
+                    var input = $(this).parent().find('input');
+                    var val = parseInt(input.val(), 10);
+                    if (val != 0)
+                        input.val(-1 * val);
+                })
+
+                .on('click', '.scoreButtons .btn[data-number]', function() {
+                    var input = $(this).closest('.scoreButtons').find('.currentNumber');
+                    var currentVal = parseInt(input.text(), 10);
+                    var val = parseInt($(this).attr('data-number'), 10);
+                    currentVal += val;
+                    input.text(currentVal);
+                    input.attr('data-positive', (currentVal > 0 ? true : (currentVal == 0 ? null : false)));
+                })
+
+                .on('click', '.scoreButtons .btn.validate', function(e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var newScore = $(this).closest('.scoreButtons').find('.currentNumber').text();
+                    app.players.currentPlayer.score = parseInt(app.players.currentPlayer.score, 10) + parseInt(newScore, 10);
+                    var oldPlayer = app.players.currentPlayer;
+
+                    var players = $('.players-list .player');
+                    var next = players.filter('.selected').next('li');
+
+                    console.info(next.hasClass('player'),next);
+
+                    if (next.hasClass('addNewPlayer')) {
+                        next = $('.players-list .player').first();
+                    }
+
+                    console.info(next.hasClass('player'),next);
+
+                    app.players.currentPlayer = JSON.parse(next.attr('data-player'));
+
+                    app.ctrl.editPlayer(oldPlayer);
+                });
         },
 
         initPlugins: function() {
@@ -141,7 +185,14 @@ app.register({
 
         showFormPlayer: function(player) {
             if (!isDefined(player))
-                player = null;
+                player = {
+                    player: {
+                        id: null,
+                        name: null,
+                        score: 0,
+                        color: null
+                    }
+                };
             else
                 player = {
                     player: player
@@ -150,7 +201,7 @@ app.register({
             app.core.ctrl.render('formPlayer', player, true).then(function() {
                 $('#name').focus();
                 $('.colorBoxContainer').randomize('.colorBox');
-                if (player === null) {
+                if (player.player.id === null) {
                     setTimeout(function() {
                         $('.colorBoxContainer .colorBox').first().trigger('click');
                     }, 200);
@@ -164,7 +215,6 @@ app.register({
         },
 
         addOrEditPlayer: function(data) {
-            console.info(data);
             if (data.id !== null && data.id !== "") {
                 app.ctrl.editPlayer(data);
             } else {
@@ -204,16 +254,18 @@ app.register({
         },
 
         deletePlayer: function(id) {
-            var players = app.players.__get();
+            if (confirm("Supprimer le joueur ?")) {
+                var players = app.players.__get();
 
-            $.each(players, function(i, player) {
-                if (player.id === data.id) {
+                $.each(players, function(i, player) {
+                    if (player.id == id) {
+                        players.splice(i, 1);
+                    }
+                });
 
-                    delete players[i];
-                }
-            });
-
-            app.players.__save(players);
+                app.players.__save(players);
+            }
+            app.baseUi.closeModal();
             app.ctrl.homeAction();
         },
 

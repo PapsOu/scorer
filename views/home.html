@@ -1,32 +1,39 @@
-<ul class="collection players-list">
+<div class="home-container">
+    <div class="home-left">
+        <ul class="collection players-list">
 
-    {{#each players as |player|}}
-        <li class="collection-item valign-wrapper row player z-depth-1" data-player="{{json player}}" data-player-id="{{player.id}}" data-player-score="{{player.score}}">
-            <p class="col s1 player-icon circle {{player.color}}">
-                {{{substrUcfirst player.name 0 2}}}
-            </p>
+            {{#each players as |player|}}
+                <li class="collection-item valign-wrapper row player z-depth-1" data-player="{{json player}}" data-player-id="{{player.id}}" data-player-score="{{player.score}}">
+                    <p class="col s1 player-icon circle {{player.color}}">
+                        {{{substrUcfirst player.name 0 2}}}
+                    </p>
 
-            <p class="col s10 player-name">
-                <span class="name">
-                    {{player.name}}
+                    <p class="col s10 player-name">
+                        <span class="name">
+                            {{player.name}}
+                        </span>
+                        <span class="score {{player.color}}-text z-depth-2-text">
+                            {{player.score}}
+                        </span>
+                    </p>
+                    <p class="right-align col s1 player-order">
+                        <a href="javascript:;">
+                            <i class="material-icons primary-text">apps</i>
+                        </a>
+                    </p>
+                </li>
+            {{else}}
+
+            {{/each}}
+            <li class="valign-wrapper row player player-moving center-align addNewPlayer" data-go="showFormPlayer">
+                <span>
+                    <i class="material-icons">add_circle_outline</i>
+                    Ajouter un joueur
                 </span>
-                <span class="score {{player.color}}-text z-depth-2-text">
-                    {{player.score}}
-                </span>
-            </p>
-            <p class="right-align col s1 player-order">
-                <a href="javascript:;">
-                    <i class="material-icons primary-text">apps</i>
-                </a>
-            </p>
-        </li>
-    {{else}}
-
-    {{/each}}
-    <li class="valign-wrapper row player player-moving center-align addNewPlayer" data-go="showFormPlayer">
-        <span>
-            <i class="material-icons">add_circle_outline</i>
-            Ajouter un joueur
-        </span>
-    </li>
-</ul>
+            </li>
+        </ul>
+    </div>
+    <div class="home-right">
+        {{{render 'scoreButtons' null}}}
+    </div>
+</div>

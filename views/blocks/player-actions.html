@@ -1,15 +1,15 @@
 <div class="modal bottom-sheet">
     <div class="modal-content center">
         <h4>{{player.name}}</h4>
-        <ul class="collection">
-            <li class="collection-item editPlayerButton" data-go="showFormPlayer" data-go-args="{{json player}}">
+
+            <a class="btn success editPlayerButton" data-go="showFormPlayer" data-go-args="{{json player}}">
                 <i class="material-icons">mode_edit</i>
                 Modifier
-            </li>
-            <li class="collection-item deletePlayerButton">
+            </a>
+            <a class="btn danger deletePlayerButton" data-go="deletePlayer" data-go-args="{{player.id}}">
                 <i class="material-icons">delete</i>
                 Supprimer
-            </li>
-        </ul>
+            </a>
+
     </div>
 </div>

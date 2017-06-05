@@ -4,14 +4,13 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta charset="UTF-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;style-src * 'unsafe-inline' 'self' data: blob:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;img-src * data: 'unsafe-inline' 'self' content:;fmedia-src mediastream;">
+        <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;style-src * 'unsafe-inline' 'self' data: blob:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;img-src * data: 'unsafe-inline' 'self' content:;">
         <meta name="format-detection" content="telephone=no">
-
 
         <link rel="stylesheet" type="text/css" href="sass/styles.css">
         <title></title>
 
-        <meta name="theme-color" content="#455a64">
+        <meta name="theme-color" content="#607D8B">
     </head>
     <body>
         <div id="app">
@@ -94,32 +93,45 @@
         <!-- APP -->
 
         <script type="text/javascript" src="liftJs/dist/liftJs.min.js"></script>
-        <!-- APP -->
-        <!-- <script type="text/javascript" src="liftJs/js/app.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/utils.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/ui.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/controller.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/events.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/session.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/history.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/modal.js"></script>
-        <script type="text/javascript" src="liftJs/js/core/settings.js"></script> -->
-
         <script type="text/javascript" src="liftJs/dist/modules/baseUi/baseUi.min.js"></script>
-
         <script type="text/javascript" src="js/modules/players.js"></script>
 
         <!-- APP STARTER -->
 
         <script type="text/javascript">
-            // app.config.host = "http://192.168.0.105";
-            app.config.host = "http://papsouscorer.dev";
+            document.addEventListener("deviceready", function () {
+                app.config.host = cordova.file.applicationDirectory;
+                app.config.liftJsPath = app.config.host + "liftJs/";
+                app.core.ui.addTemplate = function(type, name, src) {
+                    var target = $('#app');
+                    var action = 'prepend';
 
-            app.config.parametersPath = "/parameters.json";
-            // START APP
-            $(document).ready(function () {
+                    if (type === "content") {
+                        target = target.find('.content');
+                        action = 'append';
+                    }
+
+                    // REMOVE TEMPLATE IF ALREADY PRESENT IN BODY
+                    var existing = target.find('handlebars-template[name="' + name + '"]');
+                    if (existing.length != 0 && existing.attr('override') !== 'true') {
+                        existing.remove();
+                        delete app.core.ui.templates[name];
+                    }
+
+                    if (existing.attr('override') !== 'true') {
+                        // ADDING TEMPLATE IN BODY
+                        target[action](
+                            $('<handlebars-template/>').attr({
+                                name: name,
+                                src: "liftJs/" + src
+                            })
+                        );
+                    }
+                };
+                app.config.parametersPath = "www/parameters.json";
+                // START APP
                 app.init();
-            });
+            },false);
         </script>
 
         <script type="text/javascript" src="cordova.js"></script>
