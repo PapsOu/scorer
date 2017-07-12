@@ -29,7 +29,7 @@ app.register({
 
             $(document)
 
-                .on('click', '.players-list .player', function() {
+                .on('mousedown', '.players-list .player', function() {
                     var item = $(this);
                     var player = JSON.parse(item.attr('data-player'));
 
@@ -45,7 +45,7 @@ app.register({
                     }
                 })
 
-                .on('click', '.players-list .player .player-icon', function(e) {
+                .on('mousedown', '.players-list .player .player-icon', function(e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -57,7 +57,7 @@ app.register({
                     });
                 })
 
-                .on('click', '.colorBoxContainer .colorBox', function() {
+                .on('mousedown', '.colorBoxContainer .colorBox', function() {
                     var container = $(this).closest('.colorBoxContainer');
                     container.find('.colorBox').removeClass('selected');
 
@@ -68,14 +68,14 @@ app.register({
                     $('#color').val(cls);
                 })
 
-                .on('click', '.signChanger', function() {
+                .on('mousedown', '.signChanger', function() {
                     var input = $(this).parent().find('input');
                     var val = parseInt(input.val(), 10);
                     if (val != 0)
                         input.val(-1 * val);
                 })
 
-                .on('click', '.scoreButtons .btn[data-number]', function() {
+                .on('mousedown', '.scoreButtons .btn[data-number]', function() {
                     var input = $(this).closest('.scoreButtons').find('.currentNumber');
                     var currentVal = parseInt(input.text(), 10);
                     var val = parseInt($(this).attr('data-number'), 10);
@@ -84,7 +84,7 @@ app.register({
                     input.attr('data-positive', (currentVal > 0 ? true : (currentVal == 0 ? null : false)));
                 })
 
-                .on('click', '.scoreButtons .btn.validate', function(e) {
+                .on('mousedown', '.scoreButtons .btn.validate', function(e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -96,13 +96,9 @@ app.register({
                     var players = $('.players-list .player');
                     var next = players.filter('.selected').next('li');
 
-                    console.info(next.hasClass('player'),next);
-
                     if (next.hasClass('addNewPlayer')) {
                         next = $('.players-list .player').first();
                     }
-
-                    console.info(next.hasClass('player'),next);
 
                     app.players.currentPlayer = JSON.parse(next.attr('data-player'));
 
@@ -272,6 +268,14 @@ app.register({
         updateSettings: function(data) {
             if (data.clearAllplayers === true) {
                 app.players.__save([]);
+            }
+
+            if (data.clearScores === true) {
+                var players = app.players.__get();
+                $.each(players,function(i,player) {
+                    players[i].score = 0;
+                });
+                app.players.__save(players);
             }
             app.core.ui.toast("Paramètres enregistrés", "success");
             app.ctrl.homeAction();
