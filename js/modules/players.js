@@ -91,16 +91,18 @@ app.register({
 
                     var newScore = $(this).closest('.scoreButtons').find('.currentNumber').text();
                     app.players.currentPlayer.score = parseInt(app.players.currentPlayer.score, 10) + parseInt(newScore, 10);
-                    var oldPlayer = app.players.currentPlayer;
+                    var oldPlayer = jQuery.extend({}, app.players.currentPlayer);
 
                     var players = $('.players-list .player');
-                    var next = players.filter('.selected').next('li');
+                    var next = players.filter('.selected').next();
 
                     if (next.hasClass('addNewPlayer')) {
                         next = $('.players-list .player').first();
                     }
 
-                    app.players.currentPlayer = JSON.parse(next.attr('data-player'));
+                    console.info(next);
+
+                    app.players.currentPlayer = next.data('player');
 
                     app.ctrl.editPlayer(oldPlayer);
                 });
@@ -174,8 +176,9 @@ app.register({
             }).then(function() {
                 app.players.ui.initSortables();
                 app.core.history.add(app.ctrl.states.home);
-                if (app.players.currentPlayer !== null)
-                    $('.players-list .player[data-player-id="' + app.players.currentPlayer.id + '"]').trigger('click');
+                if (app.players.currentPlayer !== null) {
+                    $('.players-list .player[data-player-id="' + app.players.currentPlayer.id + '"]').trigger('mousedown');
+                }
             });
         },
 
