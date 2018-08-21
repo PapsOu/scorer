@@ -15,7 +15,7 @@ cordova build'''
     }
     stage('Publish adb') {
       steps {
-        copyArtifacts 'scorer'
+        sh 'echo "tmp"'
       }
     }
   }
