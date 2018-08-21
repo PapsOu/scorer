@@ -8,7 +8,9 @@ pipeline {
     }
     stage('error') {
       steps {
-        sh 'cd ./cordova && cordova build && return 0'
+        sh '''cd ./cordova
+cordova platform add android
+cordova build'''
       }
     }
   }
