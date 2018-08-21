@@ -6,9 +6,9 @@ pipeline {
         git(url: 'https://github.com/PapsOu/scorer.git', branch: 'master')
       }
     }
-    stage('') {
+    stage('error') {
       steps {
-        sh 'cordova build'
+        sh 'cd ./cordova && cordova build && return 0'
       }
     }
   }
