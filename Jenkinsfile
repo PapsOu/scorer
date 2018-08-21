@@ -6,11 +6,16 @@ pipeline {
         git(url: 'https://github.com/PapsOu/scorer.git', branch: 'master')
       }
     }
-    stage('error') {
+    stage('Cordova') {
       steps {
         sh '''cd ./cordova
 cordova platform add android
 cordova build'''
+      }
+    }
+    stage('Publish adb') {
+      steps {
+        copyArtifacts 'scorer'
       }
     }
   }
